@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const _ = require('lodash');
 const sA = require('superagent');
 const lev = require('levenshtein');
@@ -140,10 +138,7 @@ function processListings(opts, listings) {
       return searchForItemInMenus(opts.query, x);
     }
     return x;
-  }).then((shops) => {
-    if (opts.print) prettyPrint.shops(shops)
-    else return shops;
-  })
+  }).then(prettyPrint.shops)
   .catch(function(e) { console.log(e) });
 }
 
@@ -154,59 +149,5 @@ function getShopsWithClones(opts) {
   });
 }
 
-function getOptions() {
-  let filterFlags = _.filter(process.argv, function(x) { return x.indexOf("--") !== -1});
-  let location = _.filter(process.argv, function(x) { return x.indexOf("--") === -1})
-  location = location[location.length - 1];
-
-  let query = _.filter(
-    process.argv,
-    function(x) { return x.indexOf("query=") >= 0 }
-  )[0];
-
-  if (query !== undefined) {
-    delete filterFlags[filterFlags.indexOf(query)]
-    const segs = query.split("=");
-    query = segs[segs.length - 1];
-  }
-
-  filterFlags = filterFlags.map(function(x) {
-    const segs = x.split("--")
-    return segs[segs.length - 1]
-  });
-
-  console.log("Searching " + location + "...")
-  if (query) console.log("Searching for " + query);
-
-  return {
-    query,
-    filters: _.filter(filterFlags),
-    regionName: location,
-  }
-}
-
-(function main() {
-  const opts = getOptions()
-  const filterTypes = _.map(opts.filters, function(x) {
-    const name = FILTERS[x];
-
-    if (name == null) {
-      console.log("Fatal: Unrecognized filter " + x)
-      process.exit(1);
-    }
-
-    return name
-  });
-
-  opts.filters = filterTypes;
-
-  console.log(opts)
-
-  getShopsWithClones(opts).catch(function(r) {console.log(r)})
-})()
-
-
-module.exports = {
-  getShopsWithClones: getShopsWithClones,
-  FILTERS,
-}
+exports.FILTERS = FILTERS;
+exports.getShopsWithClones = getShopsWithClones;

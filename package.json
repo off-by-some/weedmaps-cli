@@ -1,8 +1,8 @@
 {
-  "name": "weedmaps-cli",
+  "name": "weedmaps",
   "version": "0.0.2",
-  "bin": "./index.js",
-  "description": "",
+  "bin": "./bin/weedmaps-cli.js",
+  "description": "A command line interface to weedmaps",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
