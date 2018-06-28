@@ -1,6 +1,6 @@
 {
   "name": "weedmaps",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bin": "./bin/weedmaps-cli.js",
   "description": "A command line interface to weedmaps",
   "main": "index.js",
