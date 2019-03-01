@@ -1,0 +1,7 @@
+weedmaps-cli <location> [filters]
+
+# All filters specified
+weedmaps-cli sacramento --indica --sativa --hybrid --concentrate --drink --clone --gear --topicals --preroll
+
+# Only show indicas per shop
+weedmaps-cli san-jose --indica
