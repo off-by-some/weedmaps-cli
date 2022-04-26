@@ -1,17 +1,33 @@
 {
   "name": "weedmaps-cli",
-  "version": "0.0.3",
-  "bin": "./bin/weedmaps-cli.js",
-  "description": "A command line interface to weedmaps",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "Searches Weedmaps via the CLI",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn run tsc",
+    "check": "yarn run tsc --noEmit",
+    "lint": "yarn run eslint . --ext .ts",
+    "start": "yarn run build && node --unhandled-rejections=strict dist/index.js | yarn pino-pretty"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pholey/weedmaps-cli.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pholey/weedmaps-cli/issues"
+  },
+  "homepage": "https://github.com/Pholey/weedmaps-cli#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "pino-pretty": "^7.6.1",
+    "typescript": "^4.6.3"
+  },
   "dependencies": {
-    "levenshtein": "^1.0.5",
-    "lodash": "^4.17.10",
-    "superagent": "^3.8.3"
+    "axios": "^0.27.1",
+    "pino": "^7.11.0"
   }
 }
